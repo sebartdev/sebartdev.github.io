@@ -3,93 +3,93 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>sebartdev – apps</title>
-  <meta name="description" content="Small, private mobile apps by sebartdev (Sebastian Partyka). Małe, prywatne aplikacje mobilne od sebartdev.">
+  <title>SebArtDev – mobile apps</title>
+  <meta name="description" content="SebArtDev – mobile apps by Sebastian Partyka. Aplikacje mobilne Sebastiana Partyki.">
+  <meta name="theme-color" content="#14162b">
   <link rel="icon" href="packpal/icon.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home.css">
 </head>
 <body>
-  <header class="top">
+  <header class="hero">
     <div class="wrap">
-      <a href="./">sebartdev</a>
-      <div class="lang-switch">
-        <button type="button" data-set-lang="pl" aria-pressed="false">PL</button>
-        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <div class="bar">
+        <a class="logo" href="./">Seb<b>Art</b>Dev</a>
+        <div class="lang-switch">
+          <button type="button" data-set-lang="pl" aria-pressed="false">PL</button>
+          <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+        </div>
+      </div>
+      <div class="hero-body">
+        <h1 class="wordmark">Seb<b>Art</b>Dev</h1>
+        <p class="tagline" data-lang="en">Mobile apps crafted with care –
+          simple to use, pleasant to look at, made to last.</p>
+        <p class="tagline" data-lang="pl">Aplikacje mobilne robione
+          starannie – proste w obsłudze, przyjemne dla oka, zrobione na
+          lata.</p>
+        <div class="hero-links">
+          <a class="pill primary" href="#apps" data-lang="en">See the apps</a>
+          <a class="pill primary" href="#apps" data-lang="pl">Zobacz aplikacje</a>
+          <a class="pill ghost" href="#contact" data-lang="en">Get in touch</a>
+          <a class="pill ghost" href="#contact" data-lang="pl">Kontakt</a>
+        </div>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <div class="hero">
-      <h1>sebartdev</h1>
-      <p data-lang="en">Small, private apps for everyday life.</p>
-      <p data-lang="pl">Małe, prywatne aplikacje na co dzień.</p>
-    </div>
-
-    <section>
-      <h2 data-lang="en">Apps</h2>
-      <h2 data-lang="pl">Aplikacje</h2>
-      <a class="app-card" href="packpal/">
-        <img src="packpal/icon.png" alt="">
-        <div>
-          <strong>PackPal</strong>
-          <span data-lang="en">Packing list for every trip – offline, no
-            account. Coming soon to Google Play.</span>
-          <span data-lang="pl">Lista pakowania na każdy wyjazd – offline,
-            bez konta. Wkrótce w Google Play.</span>
+    <section id="apps">
+      <p class="eyebrow" data-lang="en">Apps</p>
+      <p class="eyebrow" data-lang="pl">Aplikacje</p>
+      <div class="apps">
+        <a class="app" href="packpal/">
+          <div class="app-head">
+            <img src="packpal/icon.png" alt="">
+            <div>
+              <strong>PackPal</strong>
+              <span class="chip" data-lang="en">Coming soon · Android</span>
+              <span class="chip" data-lang="pl">Wkrótce · Android</span>
+            </div>
+          </div>
+          <p data-lang="en">A packing list for every trip: pick your
+            activities, tick things off, leave home without forgetting
+            anything.</p>
+          <p data-lang="pl">Lista pakowania na każdy wyjazd: zaznacz
+            aktywności, odhaczaj rzeczy i wychodź z domu bez obaw, że coś
+            zostało.</p>
+          <span class="more" data-lang="en">Learn more →</span>
+          <span class="more" data-lang="pl">Więcej →</span>
+        </a>
+        <div class="app placeholder">
+          <p data-lang="en">More apps on the way.</p>
+          <p data-lang="pl">Kolejne aplikacje w drodze.</p>
         </div>
-      </a>
+      </div>
     </section>
 
-    <section>
-      <h2 data-lang="en">How I build apps</h2>
-      <h2 data-lang="pl">Jak tworzę aplikacje</h2>
-      <ul class="cards">
-        <li data-lang="en"><strong>Private by default</strong>Your data
-          stays on your phone. No accounts, ads, analytics or
-          tracking.</li>
-        <li data-lang="pl"><strong>Prywatnie od początku</strong>Twoje dane
-          zostają na telefonie. Bez kont, reklam, analityki
-          i śledzenia.</li>
-        <li data-lang="en"><strong>Works offline</strong>No internet
-          needed – at the airport, in the mountains or abroad.</li>
-        <li data-lang="pl"><strong>Działa offline</strong>Bez internetu –
-          na lotnisku, w górach i za granicą.</li>
-        <li data-lang="en"><strong>Simple and careful</strong>Few screens,
-          clear actions, light and dark theme, accessible to
-          everyone.</li>
-        <li data-lang="pl"><strong>Prosto i starannie</strong>Mało ekranów,
-          jasne akcje, motyw jasny i ciemny, dostępność dla
-          każdego.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2 data-lang="en">About</h2>
-      <h2 data-lang="pl">O mnie</h2>
-      <p data-lang="en">I'm Sebastian Partyka, an independent developer
-        from Poland. I build mobile apps in Flutter – things I needed
-        myself, done properly.</p>
-      <p data-lang="pl">Jestem Sebastian Partyka, niezależny twórca
-        z Polski. Tworzę aplikacje mobilne we Flutterze – takie, których
-        sam potrzebowałem, zrobione porządnie.</p>
-    </section>
-
-    <section>
-      <h2 data-lang="en">Contact</h2>
-      <h2 data-lang="pl">Kontakt</h2>
-      <p data-lang="en">Questions, ideas or a bug to report? Write to
-        <a href="mailto:TWOJ-ADRES@gmail.com">TWOJ-ADRES@gmail.com</a>.</p>
-      <p data-lang="pl">Pytanie, pomysł albo błąd do zgłoszenia? Napisz na
-        <a href="mailto:TWOJ-ADRES@gmail.com">TWOJ-ADRES@gmail.com</a>.</p>
+    <section class="about">
+      <div class="panel">
+        <h2 data-lang="en">About</h2>
+        <h2 data-lang="pl">O mnie</h2>
+        <p data-lang="en">I'm Sebastian Partyka, an independent developer
+          from Poland. I build mobile apps in Flutter, from the first idea
+          to the store.</p>
+        <p data-lang="pl">Jestem Sebastian Partyka, niezależny twórca
+          z Polski. Tworzę aplikacje mobilne we Flutterze – od pierwszego
+          pomysłu do publikacji w sklepie.</p>
+      </div>
+      <div class="panel" id="contact">
+        <h2 data-lang="en">Contact</h2>
+        <h2 data-lang="pl">Kontakt</h2>
+        <p data-lang="en">Questions, ideas or a bug to report? Write to
+          <a href="mailto:TWOJ-ADRES@gmail.com">TWOJ-ADRES@gmail.com</a>.</p>
+        <p data-lang="pl">Pytanie, pomysł albo błąd do zgłoszenia? Napisz
+          na <a href="mailto:TWOJ-ADRES@gmail.com">TWOJ-ADRES@gmail.com</a>.</p>
+      </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap">
-      <a href="packpal/">PackPal</a>
-      <a href="packpal/privacy.html">Privacy / Prywatność</a>
-    </div>
+    <div class="wrap">© 2026 SebArtDev · Sebastian Partyka</div>
   </footer>
   <script src="lang.js"></script>
 </body>
