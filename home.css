@@ -334,6 +334,38 @@ a.app:focus-visible {
   box-shadow: 0 20px 44px rgba(108, 92, 231, 0.22);
 }
 
+/* A soft light streak across the card on hover, like on the buttons. */
+a.app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+a.app:hover::before,
+a.app:focus-visible::before {
+  transform: translateX(120%);
+  transition: transform 0.9s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  a.app::before {
+    background: linear-gradient(
+      110deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.08) 50%,
+      transparent 65%
+    );
+  }
+}
+
 a.app:active {
   transform: translateY(-1px) scale(0.99);
   transition-duration: 0.08s;
