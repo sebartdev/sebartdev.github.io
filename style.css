@@ -215,3 +215,16 @@ footer a {
 [hidden] {
   display: none !important;
 }
+
+/* E-mail address kept out of the HTML (no mailto, not selectable) so
+   simple spam bots cannot harvest it; same rule lives in home.css. */
+.mail {
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.mail::after {
+  content: "\73 \65 \62 \61 \72 \74 \2e \63 \6f \6e \74 \61 \63 \74 \40 \67 \6d \61 \69 \6c \2e \63 \6f \6d ";
+}

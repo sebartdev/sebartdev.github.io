@@ -1,26 +1,20 @@
-/* Portfolio home page; app pages use style.css with their own colours. */
+/* Portfolio home page; app pages use style.css with their own colours.
+   Black dominates; yellow and green only as light and accents. */
 :root {
-  --ink: #14162b;
-  --ink-soft: #2a2d52;
-  --violet: #6c5ce7;
-  --teal: #19c3b1;
-  --bg: #f6f6fb;
-  --card: #ffffff;
-  --text: #1b1d33;
-  --muted: #5d6080;
-  --border: #e3e4f0;
+  color-scheme: dark;
+  --black: #050506;
+  --yellow: #ffd23f;
+  --lime: #a6e35a;
+  --green: #12c06a;
+  --brand: linear-gradient(120deg, var(--yellow) 0%, var(--lime) 50%,
+      var(--green) 100%);
+  --bg: #0a0b0c;
+  --card: #121416;
+  --text: #f1f2ec;
+  --muted: #a1a69f;
+  --border: #23272a;
   --radius: 20px;
   --max: 980px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0e0f1d;
-    --card: #181a2e;
-    --text: #ecedf7;
-    --muted: #a3a6c4;
-    --border: #2a2d48;
-  }
 }
 
 * {
@@ -42,7 +36,7 @@ body {
 }
 
 a {
-  color: var(--violet);
+  color: var(--lime);
 }
 
 .wrap {
@@ -57,9 +51,49 @@ a {
   position: relative;
   overflow: hidden;
   color: #fff;
-  background: radial-gradient(circle at 15% 20%, rgba(25, 195, 177, 0.45), transparent 45%),
-    radial-gradient(circle at 85% 0%, rgba(108, 92, 231, 0.75), transparent 55%),
-    linear-gradient(160deg, var(--ink) 0%, var(--ink-soft) 100%);
+  background: var(--black);
+  isolation: isolate;
+}
+
+/* Two slow-drifting glows: yellow top right, green bottom left. */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero::before {
+  top: -42vmax;
+  right: -28vmax;
+  background: radial-gradient(circle, rgba(255, 210, 63, 0.3),
+      transparent 60%);
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+.hero::after {
+  bottom: -48vmax;
+  left: -26vmax;
+  background: radial-gradient(circle, rgba(18, 192, 106, 0.28),
+      transparent 60%);
+  animation: drift 22s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes drift {
+  to {
+    transform: translate(6vmax, 4vmax) scale(1.1);
+  }
+}
+
+/* A thin brand-coloured line closing the hero. */
+.hero-line {
+  height: 2px;
+  background: var(--brand);
+  opacity: 0.85;
 }
 
 .hero .bar {
@@ -80,8 +114,11 @@ a {
 
 .logo b,
 .wordmark b {
-  color: var(--teal);
   font-weight: inherit;
+  background: var(--brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .lang-switch {
@@ -94,7 +131,7 @@ a {
   overflow: hidden;
   transition: transform 0.2s ease, background-color 0.2s ease,
     color 0.2s ease;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   background: transparent;
   color: #fff;
   border-radius: 999px;
@@ -106,7 +143,7 @@ a {
 
 .lang-switch button:hover {
   transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .lang-switch button:active {
@@ -115,7 +152,7 @@ a {
 
 .lang-switch button[aria-pressed="true"] {
   background: #fff;
-  color: var(--ink);
+  color: var(--black);
 }
 
 .hero-body {
@@ -128,26 +165,28 @@ a {
   gap: 20px;
 }
 
-/* White logo glyph on the brand gradient tile. */
+/* Black tile with a gradient rim; the logo is painted with the brand
+   gradient through its shape (logo.png used as a mask). */
 .logo-mark {
+  position: relative;
   flex: none;
-  display: grid;
-  place-items: center;
   width: clamp(64px, 14vw, 96px);
   aspect-ratio: 1;
   border-radius: 28%;
-  background: linear-gradient(135deg, var(--teal), var(--violet));
-  box-shadow: 0 12px 32px rgba(108, 92, 231, 0.45);
-  color: #fff;
-  font-weight: 800;
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
-  letter-spacing: -0.04em;
+  border: 2px solid transparent;
+  background: linear-gradient(#0c0d0e, #0c0d0e) padding-box,
+    var(--brand) border-box;
+  box-shadow: 0 0 36px rgba(255, 210, 63, 0.18),
+    0 12px 32px rgba(18, 192, 106, 0.22);
 }
 
-.logo-mark img {
-  width: 72%;
-  height: 72%;
-  object-fit: contain;
+.logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 14%;
+  background: var(--brand);
+  -webkit-mask: url("logo.png") center / contain no-repeat;
+  mask: url("logo.png") center / contain no-repeat;
 }
 
 .wordmark {
@@ -162,7 +201,7 @@ a {
   margin: 16px 0 0;
   max-width: 30em;
   font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .hero-links {
@@ -229,24 +268,24 @@ a {
 
 .pill:focus-visible,
 .lang-switch button:focus-visible {
-  outline: 3px solid var(--teal);
+  outline: 3px solid var(--yellow);
   outline-offset: 3px;
 }
 
 .pill.primary {
-  background: #fff;
-  color: var(--ink);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  background: var(--brand);
+  color: var(--black);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
 }
 
 .pill.primary:hover,
 .pill.primary:focus-visible {
-  box-shadow: 0 12px 28px rgba(25, 195, 177, 0.45),
-    0 0 0 4px rgba(25, 195, 177, 0.25);
+  box-shadow: 0 12px 28px rgba(166, 227, 90, 0.35),
+    0 0 0 4px rgba(255, 210, 63, 0.2);
 }
 
 .pill.ghost {
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
 }
 
@@ -254,15 +293,15 @@ a {
   background: linear-gradient(
     110deg,
     transparent 30%,
-    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.22) 50%,
     transparent 70%
   );
 }
 
 .pill.ghost:hover,
 .pill.ghost:focus-visible {
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 26px rgba(108, 92, 231, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 26px rgba(18, 192, 106, 0.3);
 }
 
 /* Click ripple, added by ripple.js. */
@@ -318,7 +357,7 @@ section {
   border-radius: var(--radius);
   background: var(--card);
   border: 1px solid var(--border);
-  box-shadow: 0 12px 32px rgba(20, 22, 43, 0.08);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
   color: inherit;
   text-decoration: none;
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -328,8 +367,9 @@ section {
 a.app:hover,
 a.app:focus-visible {
   transform: translateY(-4px);
-  border-color: rgba(108, 92, 231, 0.45);
-  box-shadow: 0 20px 44px rgba(108, 92, 231, 0.22);
+  border-color: rgba(166, 227, 90, 0.5);
+  box-shadow: 0 20px 44px rgba(18, 192, 106, 0.16),
+    0 0 0 1px rgba(255, 210, 63, 0.12);
 }
 
 /* A soft light streak across the card on hover, like on the buttons. */
@@ -340,7 +380,7 @@ a.app::before {
   background: linear-gradient(
     110deg,
     transparent 35%,
-    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0.07) 50%,
     transparent 65%
   );
   transform: translateX(-120%);
@@ -353,24 +393,13 @@ a.app:focus-visible::before {
   transition: transform 0.9s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  a.app::before {
-    background: linear-gradient(
-      110deg,
-      transparent 35%,
-      rgba(255, 255, 255, 0.08) 50%,
-      transparent 65%
-    );
-  }
-}
-
 a.app:active {
   transform: translateY(-1px) scale(0.99);
   transition-duration: 0.08s;
 }
 
 a.app:focus-visible {
-  outline: 3px solid var(--violet);
+  outline: 3px solid var(--yellow);
   outline-offset: 3px;
 }
 
@@ -407,14 +436,8 @@ a.app:hover .more {
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 600;
-  background: rgba(25, 195, 177, 0.14);
-  color: #0e8a7d;
-}
-
-@media (prefers-color-scheme: dark) {
-  .chip {
-    color: var(--teal);
-  }
+  background: rgba(255, 210, 63, 0.12);
+  color: var(--yellow);
 }
 
 .app p {
@@ -425,7 +448,7 @@ a.app:hover .more {
 .app .more {
   margin-top: auto;
   font-weight: 600;
-  color: var(--violet);
+  color: var(--lime);
 }
 
 .app.placeholder {
@@ -461,6 +484,11 @@ a.app:hover .more {
   color: var(--muted);
 }
 
+.panel .mail {
+  color: var(--text);
+  font-weight: 600;
+}
+
 footer {
   margin-top: 40px;
   padding: 24px 0 40px;
@@ -471,6 +499,18 @@ footer {
 
 [hidden] {
   display: none !important;
+}
+
+/* E-mail address kept out of the HTML (no mailto, not selectable) so
+   simple spam bots cannot harvest it; same rule lives in style.css. */
+.mail {
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.mail::after {
+  content: "\73 \65 \62 \61 \72 \74 \2e \63 \6f \6e \74 \61 \63 \74 \40 \67 \6d \61 \69 \6c \2e \63 \6f \6d ";
 }
 
 @media (prefers-reduced-motion: reduce) {
